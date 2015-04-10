@@ -1,0 +1,36 @@
+.game
+  +padding-top(2)
+
+.game__button
+
+.timer
+  +vertical-margin(1)
+  +margin-bottom(3)
+  text-align: center
+  +font-size(80px)
+  color: $light-bg-color
+  &:before, &:after
+    content: ""
+    display: block
+    width: 150px
+    margin: auto
+    border-bottom: 1px solid $light-bg-color
+  &:before
+    +position(relative, 0px 0px none 0px)
+  &:after
+    +position(relative, none 0px 0px 0px)
+
+.timer__number
+  width: 100px
+  display: inline-block
+  white-space: nowrap
+
+.timer__divider
+
+.timer__title
+  +body-font-family
+  text-align: center
+  text-transform: uppercase
+  +font-size(40px)
+  color: $light-bg-color
+  +vertical-margin(1)

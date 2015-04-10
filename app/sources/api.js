@@ -14,7 +14,7 @@ class Api extends AbstractApi {
 
   startPuzzle(puzzleId) {
     return this.put('/start', {
-      puzzleId: puzzleId
+      id: puzzleId
     });
   }
 

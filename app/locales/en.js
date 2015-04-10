@@ -28,10 +28,9 @@ var en = {
       },
 
       short: {
-        hour: "2-digit",
         minute: "2-digit",
-        pattern: "{hour}:{minute}",
-        pattern12: "{hour}:{minute} {ampm}"
+        second: "2-digit",
+        pattern: "{minute}:{seconds}"
       }
     }
   },
