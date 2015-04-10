@@ -5,7 +5,7 @@ import React from "react/addons";
 import Router from "react-router";
 import routes from "./routes";
 
-var currentLang = 'it';
+var currentLang = 'en';
 var router = Router.create({
   routes: routes,
   location: Router.HistoryLocation

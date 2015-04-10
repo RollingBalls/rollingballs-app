@@ -1,7 +1,7 @@
 import AbstractApi from './abstract_api';
 import storage from './storage';
 
-const BASE_URL    = "/api/v1";
+const BASE_URL    = "https://artquest.ninja/api/v1";
 
 class Api extends AbstractApi {
   constructor() {
@@ -12,11 +12,17 @@ class Api extends AbstractApi {
     return this.get('/puzzles', params);
   }
 
+  startPuzzle(puzzleId) {
+    return this.put('/start', {
+      puzzleId: puzzleId
+    });
+  }
+
   defaultHeaders() {
     return Object.assign(
       super.defaultHeaders(),
       {
-        'Accept-Language': 'it', // FIXME: choose lang
+        'Accept-Language': 'en', // FIXME: choose lang
         'X-Auth-Token': storage.userId()
       }
     );

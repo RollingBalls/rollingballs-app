@@ -1,5 +1,5 @@
-var it = {
-  locales: ['it'],
+var en = {
+  locales: ['en'],
 
   formats: {
     number: {
@@ -37,8 +37,10 @@ var it = {
   },
 
   messages: {
-    appName: "RollingBalls"
+    puzzles: {
+      found: "{count, plural, =0 {0 puzzles} =1 {1 puzzle} other {# puzzles}} found!"
+    }
   }
 };
 
-export default it;
+export default en;

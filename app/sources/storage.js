@@ -21,8 +21,24 @@ class Storage {
     return localStorage.getItem('userId');
   }
 
+  puzzle() {
+    return JSON.parse(localStorage.getItem('puzzle'));
+  }
+
+  setPuzzle(puzzle) {
+    localStorage.setItem(
+      'puzzle',
+      JSON.stringify(puzzle)
+    );
+  }
+
+  unsetPuzzle() {
+    localStorage.removeItem('puzzle');
+  }
+
   clear() {
     this.unsetUserId();
+    this.unsetPuzzle();
   }
 }
 

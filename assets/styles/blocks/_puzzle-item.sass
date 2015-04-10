@@ -1,0 +1,17 @@
+.puzzle-item
+  +size(124px)
+  display: inline-block
+  position: relative
+  +padding(1)
+
+.puzzle-item__star
+  @extend .sprite--starcircle
+
+.puzzle-item__number
+  +heading-font-family
+  +font-size(beta)
+  line-height: 1
+  +size(24px)
+  margin: auto
+  color: white
+  +position(absolute, 0px 0px 0px 0px)

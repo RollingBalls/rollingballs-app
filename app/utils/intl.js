@@ -21,7 +21,7 @@ require('react-intl/dist/locale-data/it');
 
 
 var intlData = {
-  it: require('../locales/it.js')
+  en: require('../locales/en.js')
 };
 
 export default intlData;
