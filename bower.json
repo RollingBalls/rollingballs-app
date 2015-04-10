@@ -1,0 +1,7 @@
+{
+  "name": "RollingBalls",
+  "version": "1.0.0",
+  "dependencies": {
+    "normalize-scss": "~3.0.2"
+  }
+}
