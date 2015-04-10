@@ -18,7 +18,7 @@ var Game = React.createClass({
   getInitialState() {
     var puzzle = storage.puzzle();
     return {
-      timeout: undefined,
+      timeout: 0,
       interval: undefined,
       elapsed: 0,
       puzzle: puzzle
@@ -41,7 +41,7 @@ var Game = React.createClass({
           alert('FINE!!!');
           if (this.state.interval) {
             clearInterval(this.state.interval);
-            this.setState({interval: undefined, timeout: undefined});
+            this.setState({interval: 0, timeout: 0});
           }
         }
         this.setState({
@@ -53,19 +53,17 @@ var Game = React.createClass({
   },
 
   countdown() {
-    if (this.state.timeout >= 0) {
-      var countdown = new Date((this.state.timeout - this.state.elapsed) * 1000);
-      return (
-        <div>
-          <h3 className="timer__title">Time left</h3>
-          <div className="timer">
-            <span className="timer__number">{pad(countdown.getMinutes())}</span>
-            <span className="timer__diveder"> : </span>
-            <span className="timer__number">{pad(countdown.getSeconds())}</span>
-          </div>
+    var countdown = new Date((this.state.timeout - this.state.elapsed) * 1000);
+    return (
+      <div>
+        <h3 className="timer__title">Time left</h3>
+        <div className="timer">
+          <span className="timer__number">{pad(countdown.getMinutes())}</span>
+          <span className="timer__diveder"> : </span>
+          <span className="timer__number">{pad(countdown.getSeconds())}</span>
         </div>
-      );
-    }
+      </div>
+    );
   },
 
   puzzle() {
