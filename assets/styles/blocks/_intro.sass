@@ -1,0 +1,22 @@
+%introFadeInTranslate
+  opacity: 0
+  transition: all .5s ease-out
+  transform: translateY(-10px)
+  .ready &
+    opacity: 1
+    transform: translateY(0)
+
+.intro
+  text-align: center
+
+.intro__logo
+  margin: auto
+  +vertical-padding(3)
+  @extend %introFadeInTranslate
+
+.intro__actions
+  +padding-side(10)
+  > *
+    width: 100%
+    display: block
+    +vertical-margin(2)

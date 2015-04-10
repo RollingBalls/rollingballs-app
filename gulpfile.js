@@ -10,6 +10,7 @@ var watchify    = require('watchify');
 var envify      = require('envify/custom');
 var babelify    = require("babelify");
 var deps        = require("gulp-sync")(gulp);
+var spritesmith = require('gulp.spritesmith');
 var lodash      = require('lodash');
 var imageResize = require('gulp-image-resize');
 var extractor   = require('gulp-extract-sourcemap');
@@ -124,6 +125,36 @@ gulp.task('images', function() {
     .pipe($.size());
 });
 
+gulp.task('sprites', function(cb) {
+  gulp.src('assets/images/sprites/*.png')
+    .pipe(plumbError())
+    .pipe(spritesmith({
+      imgName: 'images/sprites-2x.png',
+      cssName: 'styles/variables/_sprites.scss'
+    }))
+    .pipe(gulp.dest('assets'))
+    .on('end', function() {
+      gulp.src('assets/images/sprites/*.png')
+        .pipe(imageResize({ width: "50%" }))
+        .pipe(gulp.dest('temp/sprites'))
+        .on('end', function() {
+          gulp.src('temp/sprites/*.png')
+          .pipe(spritesmith({
+            imgName: 'images/sprites-1x.png',
+            cssName: 'styles/variables/_sprites.scss',
+            cssTemplate: function(context) {
+              var template = lodash.template(fs.readFileSync('.sprites-template', 'utf8'));
+              return template(context);
+            }
+          }))
+          .pipe(gulp.dest('assets'))
+          .on('end', function() {
+            del('temp', cb);
+          });
+        });
+    });
+});
+
 gulp.task('static', function() {
   return gulp.src('public/**/*')
     .pipe(plumbError())
@@ -176,7 +207,7 @@ gulp.task(
   'devBuild',
   deps.sync([
     'clean',
-    ['iconfont'],
+    ['iconfont', 'sprites'],
     ['html', 'styles', 'fonts', 'static', 'images', 'devScripts']
   ])
 );
@@ -185,7 +216,7 @@ gulp.task(
   'build',
   deps.sync([
     'clean',
-    ['iconfont'],
+    ['iconfont', 'sprites'],
     ['html', 'styles', 'fonts', 'static', 'images', 'scripts']
   ])
 );

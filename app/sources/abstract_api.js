@@ -14,7 +14,6 @@ class AbstractApi {
     );
     if (params) {
       url = url + '?' + this.objectToQueryString(params);
-      console.log('url:', url);
     }
     return this.request(url, options);
   }
@@ -60,7 +59,6 @@ class AbstractApi {
     url = this.apiUrl(url);
 
     options.headers = Object.assign({}, this.defaultHeaders(), options.headers);
-
     return fetch(url, options)
       .then((response) => {
         if (response.status !== 204) {
