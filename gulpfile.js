@@ -207,7 +207,7 @@ gulp.task(
   'devBuild',
   deps.sync([
     'clean',
-    ['iconfont', 'sprites'],
+    ['sprites'],
     ['html', 'styles', 'fonts', 'static', 'images', 'devScripts']
   ])
 );
@@ -216,7 +216,7 @@ gulp.task(
   'build',
   deps.sync([
     'clean',
-    ['iconfont', 'sprites'],
+    ['sprites'],
     ['html', 'styles', 'fonts', 'static', 'images', 'scripts']
   ])
 );
