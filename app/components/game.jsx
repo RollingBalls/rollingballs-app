@@ -38,16 +38,22 @@ var Game = React.createClass({
       var interval = setInterval(() => {
         var elapsed = this.state.elapsed + 1;
         if (elapsed > this.state.timeout) {
-          alert('FINE!!!');
+          alert('TIMEOUT!');
           if (this.state.interval) {
             clearInterval(this.state.interval);
-            this.setState({interval: 0, timeout: 0});
+            this.setState({
+              timeout: 0,
+              elapsed: 0,
+              interval: 0,
+            });
           }
         }
-        this.setState({
-          elapsed: elapsed,
-          interval: interval
-        })
+        else {
+          this.setState({
+            elapsed: elapsed,
+            interval: interval
+          })
+        }
       }, 1000);
     });
   },

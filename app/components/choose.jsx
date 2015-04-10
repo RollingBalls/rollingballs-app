@@ -8,6 +8,7 @@ import {
 
 import geolocation from '../sources/geolocation';
 import storage from '../sources/storage';
+import api from '../sources/api';
 
 var Choose = React.createClass({
   mixins: [IntlMixin, Navigation],
