@@ -5,6 +5,7 @@ class Geolocation {
   success(callback, position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
+    console.log('(only for Bajo) position:', position);
     callback(latitude, longitude);
   }
 
