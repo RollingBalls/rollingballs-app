@@ -35,10 +35,22 @@ var Puzzles = React.createClass({
           puzzles: res.body,
         })
       });
- });
+    });
+  },
+
+  selectDifficulty(d, e) {
+    e.preventDefault();
+    this.setState({difficulty: d});
   },
 
   chooseForm() {
+    var classes = React.addons.classSet({
+      'difficulty__slider': true,
+      'easy': (this.state.difficulty == 'easy'),
+      'medium': (this.state.difficulty == 'medium'),
+      'hard': (this.state.difficulty == 'hard'),
+    });
+
     return (
       <form ref="difficulty" className="choose wrap" onSubmit={this.handleSubmit}>
         <div className="box">
@@ -46,10 +58,38 @@ var Puzzles = React.createClass({
         </div>
 
         <div className="choose__actions">
-          <button type="submit" className="button--small choose__easy">Easy</button>
-          <button type="submit" className="button--small choose__medium">Medium</button>
-          <button type="submit" className="button--small choose__hard">Hard</button>
+          <a onClick={this.selectDifficulty.bind(this, 'easy')}
+             className="button--small choose__easy">
+            Easy
+          </a>
+          <a onClick={this.selectDifficulty.bind(this, 'medium')}
+             className="button--small choose__medium">
+            Medium
+          </a>
+          <a onClick={this.selectDifficulty.bind(this, 'hard')}
+             className="button--small choose__hard">
+            Hard
+          </a>
         </div>
+
+        <div className="difficulty__wrapper">
+          <div className={classes}>
+            <div className="difficulty__slide">
+              <span className="sprite--easy"/>
+            </div>
+            <div className="difficulty__slide">
+              <span className="sprite--medium"/>
+            </div>
+            <div className="difficulty__slide">
+              <span className="sprite--hard"/>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" className="button--huge button--primary">
+          Start!
+        </button>
+        <br/>
       </form>
     );
   },

@@ -1,0 +1,27 @@
+.difficulty
+
+.difficulty__wrapper
+  position: relative
+  overflow: hidden
+  +size(250px 290px)
+  margin: auto
+  +vertical-margin(1)
+  +clearfix
+
+.difficulty__slider
+  +position(absolute, 0px none none 0px)
+  width: (250px * 3 + 10px)
+  transition: all .5s $natural-ease
+  +clearfix
+
+  &.easy
+    transform: translateX(0)
+  &.medium
+    transform: translateX(-250px)
+  &.hard
+    transform: translateX(-250px*2)
+
+.difficulty__slide
+  +size(250px 290px)
+  display: inline-block
+  float: left

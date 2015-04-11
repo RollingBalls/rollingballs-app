@@ -4,6 +4,7 @@ import intlData from "./utils/intl";
 import React from "react/addons";
 import Router from "react-router";
 import routes from "./routes";
+import "./utils/jquery";
 
 var currentLang = 'en';
 var router = Router.create({

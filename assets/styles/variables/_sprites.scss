@@ -1,26 +1,44 @@
 // Generated automatically, do not edit manually!
 
 $sprite-size: (
-  width:   260px,
-  height:  225px
+  width:   741px,
+  height:  507px
 );
 
 $sprite-images: (
   artquest: (
     x:             0px,
-    y:             0px,
+    y:             282px,
     width:         140px,
     height:        105px
   ),
+  easy: (
+    x:             0px,
+    y:             0px,
+    width:         247px,
+    height:        282px
+  ),
+  hard: (
+    x:             247px,
+    y:             0px,
+    width:         247px,
+    height:        282px
+  ),
   hatlogo: (
     x:             140px,
-    y:             0px,
+    y:             282px,
     width:         120px,
     height:        100px
   ),
+  medium: (
+    x:             494px,
+    y:             0px,
+    width:         247px,
+    height:        282px
+  ),
   starcircle: (
     x:             0px,
-    y:             105px,
+    y:             387px,
     width:         120px,
     height:        120px
   )
