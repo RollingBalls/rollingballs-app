@@ -39,6 +39,7 @@ var Game = React.createClass({
         var elapsed = this.state.elapsed + 1;
         if (elapsed > this.state.timeout) {
           alert('TIMEOUT!');
+          this.replaceWith('lose');
           if (this.state.interval) {
             clearInterval(this.state.interval);
             this.setState({
@@ -73,6 +74,7 @@ var Game = React.createClass({
   },
 
   foundButton() {
+    console.log('bottone');
     return (
       <div className="game__actions">
         <button onClick={this.submitAnswer}
