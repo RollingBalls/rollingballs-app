@@ -22,6 +22,7 @@ var Puzzles = React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({step: 'loading'});
     var defaultDistance = 2 * 1000;
     geolocation.getPosition((lat, lon) => {
       api.getPuzzles({
@@ -91,12 +92,27 @@ var Puzzles = React.createClass({
     );
   },
 
+  loading() {
+    return (
+      <section className="puzzles wrap">
+        <div className="box">
+          <h1 className="choose__title">
+            Searching for puzzles...
+          </h1>
+        </div>
+      </section>
+    );
+  },
+
   render() {
     if (this.state.step === 'choose') {
       var html = this.chooseForm();
     }
-    else if (this.state.step === 'puzzlesList' ) {
+    else if (this.state.step === 'puzzlesList') {
       var html = this.puzzlesList();
+    }
+    else if (this.state.step === 'loading') {
+      var html = this.loading();
     }
 
     return (html);
