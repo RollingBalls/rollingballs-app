@@ -45,15 +45,16 @@ var Puzzles = React.createClass({
         </div>
 
         <div className="choose__actions">
-          <button type="submit" className="button choose__easy">Easy</button>
-          <button type="submit" className="button choose__medium">Medium</button>
-          <button type="submit" className="button choose__hard">Hard</button>
+          <button type="submit" className="button--small choose__easy">Easy</button>
+          <button type="submit" className="button--small choose__medium">Medium</button>
+          <button type="submit" className="button--small choose__hard">Hard</button>
         </div>
       </form>
     );
   },
 
-  selectPuzzle(index) {
+  selectPuzzle(index, e) {
+    e.preventDefault();
     storage.setPuzzle({
       index: index,
       text: this.state.puzzles[index].text,
@@ -65,12 +66,12 @@ var Puzzles = React.createClass({
   puzzlesList() {
     var list = this.state.puzzles.map((puzzle, i) => {
       return(
-        <article key={`puzzle-${puzzle.id}`}
+        <a href="#" key={`puzzle-${puzzle.id}`}
                  className="puzzle-item"
-                 onClick={this.selectPuzzle.bind(null, i)}>
+                 onClick={this.selectPuzzle.bind(undefined, i)}>
           <span className="sprite--starcircle"/>
           <span className="puzzle-item__number">{i+1}?</span>
-        </article>
+        </a>
       )
     });
     // FIXME : {this.getIntlMessage('puzzles.found')}

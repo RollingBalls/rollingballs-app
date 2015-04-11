@@ -17,7 +17,7 @@ class Geolocation {
     if (!navigator.geolocation){
       this.error();
     }
-    navigator.geolocation.getCurrentPosition(this.success.bind(null, callback), this.error);
+    navigator.geolocation.getCurrentPosition(this.success.bind(undefined, callback), this.error);
   }
 };
 
