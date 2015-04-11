@@ -10,7 +10,7 @@ import geolocation from '../sources/geolocation';
 import storage from '../sources/storage';
 import api from '../sources/api';
 
-var Choose = React.createClass({
+var Puzzles = React.createClass({
   mixins: [IntlMixin, Navigation],
 
   getInitialState() {
@@ -102,4 +102,4 @@ var Choose = React.createClass({
   }
 });
 
-export default Choose;
+export default Puzzles;

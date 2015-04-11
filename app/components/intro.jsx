@@ -29,7 +29,7 @@ var Intro = React.createClass({
           <span className="sprite--hatlogo logo__block"/>
         </h1>
         <div className="intro__actions">
-          <Link to="choose" className="button--primary button--huge">
+          <Link to="puzzles" className="button--primary button--huge">
             Begin
           </Link>
           <button className="button--secondary button--huge">Awards</button>

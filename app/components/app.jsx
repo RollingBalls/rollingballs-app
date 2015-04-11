@@ -7,10 +7,17 @@ import OffCanvasMenu from "./shared/off_canvas_menu";
 var App = React.createClass({
   mixins: [IntlMixin, State],
 
+  faded() {
+    return (
+      !this.isActive('intro') &&
+      !this.isActive('win')
+    );
+  },
+
   render() {
     var classes = React.addons.classSet({
       'app': true,
-      'faded': !this.isActive('intro')
+      'faded': this.faded()
     });
 
     return (

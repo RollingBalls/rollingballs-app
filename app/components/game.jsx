@@ -1,5 +1,5 @@
 import React from "react/addons";
-import { Link } from "react-router";
+import { Link, Navigation } from "react-router";
 import {
   IntlMixin,
   FormattedMessage,
@@ -13,7 +13,7 @@ import api from '../sources/api';
 import pad from '../utils/pad';
 
 var Game = React.createClass({
-  mixins: [IntlMixin],
+  mixins: [IntlMixin, Navigation],
 
   getInitialState() {
     var puzzle = storage.puzzle();
@@ -32,8 +32,8 @@ var Game = React.createClass({
 
   startGame(puzzleId) {
     api.startPuzzle(puzzleId).then((res) => {
-      console.log(res.body.seconds)
       this.setState({timeout: res.body.seconds});
+      // this.setState({timeout: 5});
 
       var interval = setInterval(() => {
         var elapsed = this.state.elapsed + 1;
@@ -72,10 +72,37 @@ var Game = React.createClass({
     );
   },
 
-  puzzle() {
+  foundButton() {
+    return (
+      <div className="game__actions">
+        <button onClick={this.submitAnswer}
+                className="button--primary button--huge">
+          Found it!
+        </button>
+      </div>
+    );
+  },
+
+  submitAnswer(e) {
+    e.preventDefault();
+    if (this.state.interval) clearInterval(this.state.interval);
+    geolocation.getPosition((lat, lon) => {
+      api.finishPuzzle(lat, lon).then((res) => {
+        if (res.body.win) {
+          this.replaceWith('win');
+        }
+        else {
+          this.replaceWith('lose');
+        }
+      });
+    });
+  },
+
+  render() {
     return (
       <section className="game wrap">
         {this.countdown()}
+        {this.foundButton()}
 
         <div className="box--border">
           <h1 className="choose__title">
@@ -85,11 +112,6 @@ var Game = React.createClass({
         </div>
       </section>
     );
-  },
-
-  render() {
-    var html = this.puzzle();
-    return (html);
   }
 });
 

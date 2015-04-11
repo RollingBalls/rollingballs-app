@@ -18,6 +18,13 @@ class Api extends AbstractApi {
     });
   }
 
+  finishPuzzle(lat, lon) {
+    return this.put('/finish', {
+      lat: lat,
+      lon: lon
+    });
+  }
+
   defaultHeaders() {
     return Object.assign(
       super.defaultHeaders(),
