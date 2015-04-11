@@ -21,7 +21,8 @@ var Win = React.createClass({
         </div>
 
         <div className="win__points box--green">
-          127 points awarded
+          <span>Right, it is the </span>
+          {this.props.poi}
         </div>
 
         <div className="win__actions">

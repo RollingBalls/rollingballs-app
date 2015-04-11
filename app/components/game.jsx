@@ -12,12 +12,16 @@ import storage from '../sources/storage';
 import api from '../sources/api';
 import pad from '../utils/pad';
 
+import Win from './win';
+import Lose from './lose';
+
 var Game = React.createClass({
   mixins: [IntlMixin, Navigation],
 
   getInitialState() {
     var puzzle = storage.puzzle();
     return {
+      step: 'game',
       timeout: 0,
       interval: undefined,
       elapsed: 0,
@@ -39,7 +43,7 @@ var Game = React.createClass({
         var elapsed = this.state.elapsed + 1;
         if (elapsed > this.state.timeout) {
           alert('TIMEOUT!');
-          this.replaceWith('lose');
+          this.setState({step: 'lose'});
           if (this.state.interval) {
             clearInterval(this.state.interval);
             this.setState({
@@ -74,7 +78,6 @@ var Game = React.createClass({
   },
 
   foundButton() {
-    console.log('bottone');
     return (
       <div className="game__actions">
         <button onClick={this.submitAnswer}
@@ -90,17 +93,18 @@ var Game = React.createClass({
     if (this.state.interval) clearInterval(this.state.interval);
     geolocation.getPosition((lat, lon) => {
       api.finishPuzzle(lat, lon).then((res) => {
+        // storage.unsetPuzzle();
         if (res.body.win) {
-          this.replaceWith('win');
+          this.setState({step: 'win', poi: res.body.poi});
         }
         else {
-          this.replaceWith('lose');
+          this.setState({step: 'lose', poi: res.body.poi});
         }
       });
     });
   },
 
-  render() {
+  theGame() {
     return (
       <section className="game wrap">
         {this.countdown()}
@@ -114,6 +118,20 @@ var Game = React.createClass({
         </div>
       </section>
     );
+  },
+
+  render() {
+    switch(this.state.step) {
+      case 'game':
+        return this.theGame();
+        break;
+      case 'win':
+        return (<Win poi={this.state.poi} />);
+        break;
+      case 'lose':
+        return (<Lose poi={this.state.poi} />);
+        break;
+    }
   }
 });
 
